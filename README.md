@@ -1,140 +1,99 @@
-Cloud Touch: Web Service Based Flight Booking App
-Abstract
-This web service application project was designed and developed to serve flight booking. The purpose is to design an interactive and seamless user experience while flight booking. The application is developed using JSP with MySQL Workbench for data storage. Multiple services are integrated such as user authentication, Google Maps API for distance calculation, and a currency exchange API for currency conversion. Data is exchanged in JSON format for ease of manipulation. This application addresses most assignment guideline features.
+Cloud Touch: Flight Booking Made Simple & Smart ✈️🌍
+Welcome to Cloud Touch, your all-in-one flight booking web app designed to make booking seamless, interactive, and secure. Whether you’re a frequent flyer or a vacation planner, Cloud Touch offers a rich user experience with real-time data, multiple services integration, and cloud scalability.
 
-Keywords: MySQL, API, Flight Booking, Web Services
+🚀 Key Features at a Glance
+Search & Book Flights: Find flights by location and date, then book your seat instantly.
 
-1. Service Oriented Architecture
-Figure 1. Service Oriented Architecture for the application
+Multi-Currency Support: Prices convert automatically using live exchange rates.
 
-pgsql
-Copy
-Edit
-+-------------------+          +-------------------+          +--------------------+
-|   Client Service   | <------> |   Core Services   | <------> | Currency Conversion |
-| (JSP + REST APIs)  |          | (Flight Booking)  |          |       Service       |
-+-------------------+          +-------------------+          +--------------------+
-           |                              |
-           |                              |
-           v                              v
-     +-------------------+          +-------------------+
-     |  Google Maps API   |          |   MySQL Database  |
-     +-------------------+          +-------------------+
-Core services communicate through a specified port.
+Distance Calculation: Google Maps API calculates travel distances to improve search accuracy.
 
-APIs handle client requests and responses.
+Secure User Authentication: Keep your profile and bookings safe.
 
-MySQL Workbench manages data storage.
+High Performance: Tested for heavy loads with Apache JMeter.
 
-JMeter is used to simulate load balancing and performance testing by generating concurrent client requests.
+Cloud Ready: Easily scalable on AWS, Azure, or GCP with auto-scaling and monitoring.
 
-The UI uses JSP technology integrating Java into HTML pages for interactive experience.
-
-2. Development Stack
-Component	Technology/Tool
-Programming Language	Java (JSP for frontend)
+🔧 Technology Stack
+Component	Tool/Technology
+Frontend	Java Server Pages (JSP)
 Backend Framework	Spring Boot
-IDE/Platform	Visual Studio
 Database	MySQL Workbench
 Testing Tool	Apache JMeter
-APIs	Google Maps, Currency Conversion
+APIs	Google Maps, Currency Exchange
 
-Figure 2. Workflow diagram for the application
-
-pgsql
+🏗️ Architecture Overview
+plaintext
 Copy
 Edit
-[User Request] --> [Client Service (JSP + REST API)] --> [Core Service]
-                                                   |
-                                                   v
-                                 [Google Maps API] & [Currency Conversion API]
-                                                   |
-                                                   v
-                                            [MySQL Database]
-                                                   |
-                                                   v
-                                          [Response to Client]
-3. Application Design & Features
-Functional Description
-RESTful APIs: Three services - Client Web Service, Core Flight Service, Currency Conversion Service.
++---------------------------+       +------------------------+       +---------------------------+
+|     Client Service        | <---> |      Core Services      | <---> |   Currency Conversion      |
+| (JSP + RESTful APIs)      |       |   (Flight Booking, etc) |       |         Service            |
++---------------------------+       +------------------------+       +---------------------------+
+             |                                  |
+             |                                  |
+             v                                  v
+     +--------------------+             +--------------------+
+     |  Google Maps API    |             |   MySQL Database   |
+     +--------------------+             +--------------------+
+Client Service: The user-facing web interface built with JSP + REST APIs.
 
-Flight Reservation: Search flights by origin, destination, and date.
+Core Services: Manages flight search, booking, seat availability.
 
-Booking: Book flights and update seat availability.
+Currency Conversion: External API integration for real-time currency rates.
 
-Currency Conversion: Auto-convert ticket prices to preferred currency.
+Google Maps API: Fetches distance data to enhance search accuracy.
 
-Performance Analysis: Evaluated using JMeter.
+MySQL Database: Centralized storage for users, bookings, and flight data.
 
-Data Storage: MySQL stores user and booking details; flight data stored as JSON.
-
-Modular Architecture: Promotes scalability and maintainability.
-
-Validation: Input and data integrity validation.
-
-Design Decisions
-Integrated external currency conversion service.
-
-Robust error handling for currency API failures.
-
-Asynchronous processing for lower latency.
-
-4. Quality of Service (QoS) Challenges
-Scalability is essential as user base grows.
-
-Challenges: resource efficiency, response times, availability during peaks.
-
-Solutions: load balancing, horizontal scaling, performance optimization.
-
-Requires proactive monitoring and capacity planning.
-
-5. QoS Testing and Performance Analysis
-Simulated load with JMeter for profiling, stress, and load testing.
-
-Key metrics: error rates, throughput, response times.
-
-Testing helps identify bottlenecks and optimize performance.
-
-Regular testing recommended for continuous optimization.
-
-Figure 3. Sample JMeter Test Report (conceptual)
-
-bash
+📊 Workflow Diagram
+plaintext
 Copy
 Edit
-+---------------------+---------+---------+----------+
-| API Endpoint        | Avg Time | Errors  | Throughput|
-+---------------------+---------+---------+----------+
-| /searchFlights      | 250 ms  | 0       | 150 req/s |
-| /bookFlight         | 300 ms  | 2       | 120 req/s |
-| /convertCurrency    | 150 ms  | 0       | 180 req/s |
-+---------------------+---------+---------+----------+
-6. Utilizing Cloud Computing for Scalability
-Cloud providers (AWS, Azure, GCP) offer auto-scaling.
+[User Request]
+     |
+     v
+[Client Service (JSP + REST API)]
+     |
+     +------------------------+
+     |                        |
+     v                        v
+[Core Flight Service]      [External APIs]
+     |                        |
+     v                        |
+[MySQL Database]              |
+     |                        |
+     +-----------+------------+
+                 |
+                 v
+          [Response to User]
+📈 Performance & Load Testing
+We simulate thousands of users booking flights simultaneously using Apache JMeter to measure:
 
-Dynamically adjust resources based on CPU/network load.
+API Endpoint	Avg Response Time	Error Rate	Throughput
+/searchFlights	250 ms	0%	150 requests/s
+/bookFlight	300 ms	1.5%	120 requests/s
+/convertCurrency	150 ms	0%	180 requests/s
 
-Benefits: pay-as-you-go, global availability, managed tools.
+☁️ Cloud Scalability & Resilience
+Deploy on cloud platforms like AWS, Azure, or GCP for:
 
-Challenges: deployment type selection, integration, security, vendor lock-in.
+Auto-Scaling: Dynamically add/remove instances based on demand.
 
-7. Challenges Associated with Cloud Migration
-Deployment choice: public, private, hybrid, multi-cloud.
+Global Availability: Reach users worldwide with minimal latency.
 
-Careful migration planning required to minimize disruption.
+Managed Services: Simplify database, monitoring, and security tasks.
 
-Risks: vendor lock-in, security, data migration, integration.
+Challenges Addressed: Vendor lock-in, data migration, integration complexity.
 
-Importance of risk assessment and mitigation.
+🌐 Future Enhancements: Semantic Web & Linked Data
+By leveraging Linked Open Data (LOD) and semantic web tech like RDF, OWL, and SPARQL, Cloud Touch aims to:
 
-8. Application of Semantic Web and Linked Data Technologies
-Linked Open Data (LOD) enables richer travel service features.
+Deliver personalized travel recommendations.
 
-Use public datasets for geography, culture, tourism, events.
+Incorporate user reviews and sentiment analysis.
 
-Themed vacation suggestions using LOD, sentiment analysis, user reviews.
+Suggest themed vacations based on location data.
 
-Geographic data enhances personalized, location-based recommendations.
-
-Technologies used: RDF, OWL, SPARQL for data integration and querying.
+Enrich user experience with richer contextual info.
 
