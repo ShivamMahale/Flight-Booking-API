@@ -1,0 +1,90 @@
+[
+    {
+        "id": 1,
+        "flightNumber": "USA678756",
+        "airline": "USA5678hjuu",
+        "originCity": "USA",
+        "destinationCity": "India",
+        "dateOfDeparture": "2024-03-15",
+        "seats": 300,
+        "numberOfConnection": 1,
+        "ticketPrice": 2000.0
+    },
+    {
+        "id": 2,
+        "flightNumber": "IN56784R",
+        "airline": "INDGO6757",
+        "originCity": "New York",
+        "destinationCity": "Kolkata",
+        "dateOfDeparture": "2024-03-14",
+        "seats": 100,
+        "numberOfConnection": 1,
+        "ticketPrice": 2000.0
+    },
+    {
+        "id": 3,
+        "flightNumber": "IN56784R",
+        "airline": "INDGO6757",
+        "originCity": "Australia",
+        "destinationCity": "London",
+        "dateOfDeparture": "2024-03-13",
+        "seats": 100,
+        "numberOfConnection": 1,
+        "ticketPrice": 2000.0
+    },
+    {
+        "id": 4,
+        "flightNumber": "SAL56784R",
+        "airline": "Singapore AirLINE",
+        "originCity": "Australia",
+        "destinationCity": "London",
+        "dateOfDeparture": "2024-03-13",
+        "seats": 100,
+        "numberOfConnection": 1,
+        "ticketPrice": 1100.0
+    },
+    {
+        "id": 5,
+        "flightNumber": "SAL56784R",
+        "airline": "Singapore AirLINE",
+        "originCity": "Australia",
+        "destinationCity": "London",
+        "dateOfDeparture": "2024-03-17",
+        "seats": 100,
+        "numberOfConnection": 1,
+        "ticketPrice": 1100.0
+    },
+    {
+        "id": 6,
+        "flightNumber": "SAL56784R",
+        "airline": "Singapore AirLINE",
+        "originCity": "Australia",
+        "destinationCity": "London",
+        "dateOfDeparture": "2024-03-18",
+        "seats": 97,
+        "numberOfConnection": 1,
+        "ticketPrice": 1100.0
+    },
+    {
+        "id": 7,
+        "flightNumber": "SAL56784R",
+        "airline": "Singapore AirLINE",
+        "originCity": "Australia",
+        "destinationCity": "London",
+        "dateOfDeparture": "2024-03-19",
+        "seats": 100,
+        "numberOfConnection": 1,
+        "ticketPrice": 1100.0
+    },
+    {
+        "id": 8,
+        "flightNumber": "SAL56784R",
+        "airline": "Singapore AirLINE",
+        "originCity": "Australia",
+        "destinationCity": "London",
+        "dateOfDeparture": "2024-03-20",
+        "seats": 100,
+        "numberOfConnection": 1,
+        "ticketPrice": 1100.0
+    }
+]

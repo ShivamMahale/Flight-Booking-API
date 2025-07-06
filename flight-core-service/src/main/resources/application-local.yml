@@ -1,0 +1,19 @@
+server:
+  port: 5004
+  servlet:
+    context-path: /flight-service
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/cloud_touch
+    username: root
+    password: username
+    driver: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+      order_inserts: true
+    show-sql: true
+

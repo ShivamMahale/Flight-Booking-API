@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/cloud_touch_app.iml" filepath="$PROJECT_DIR$/.idea/cloud_touch_app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/currency-exchange-service.iml" filepath="$PROJECT_DIR$/.idea/modules/currency-exchange-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/currency-exchange-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/currency-exchange-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/currency-exchange-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/currency-exchange-service.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flight-client-service/flight-client-service.iml" filepath="$PROJECT_DIR$/flight-client-service/flight-client-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flight-core-service.iml" filepath="$PROJECT_DIR$/.idea/modules/flight-core-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flight-core-service.main.iml" filepath="$PROJECT_DIR$/.idea/modules/flight-core-service.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/flight-core-service.test.iml" filepath="$PROJECT_DIR$/.idea/modules/flight-core-service.test.iml" />
+    </modules>
+  </component>
+</project>
