@@ -4,7 +4,7 @@
 
 <section id="hero" class="bg-dark text-white text-center py-5">
    <div class="container">
-    <img src="https://static.tnn.in/photo/msid-100330206,width-100,height-200,resizemode-75/100330206.jpg" width="50" height="350" class="card-img-top" alt="...">
+    <img src="<c:url value='/images/flight-booking-hero.avif'/>" class="img-fluid w-100 rounded" alt="Airplane in flight">
      <h1 class="display-4 font-weight-bold pt-3">Welcome to Cloud Touch App</h1>
      <p class="lead">Explore our wide range of services</p>
    </div>

@@ -43,8 +43,8 @@
  <section class="container my-card py-3 d-flex justify-content-center align-items-center">
  <h1 class="text-center">Your Searched Flight !! </h1>
  </section>
-       <div class="container">
-              <table class="table table-striped">
+    <div class="container table-responsive">
+        <table class="table table-striped">
                   <thead>
 
                       <tr>
@@ -70,12 +70,10 @@
                               <td><c:out value="${flight.numberOfConnection}" /></td>
                               <td><c:out value="${flight.flightNumber}" /></td>
                               <td><c:out value="${flight.dateOfDeparture}" /></td>
-                              <td><c:out value="${flight.ticketPrice}" /> $</td>
+                              <td class="text-nowrap" data-flight-price="${flight.ticketPrice}"><c:out value="${flight.ticketPrice}" /> USD</td>
                             <td>
-                              <input type="hidden" id="priceInput" name="price" value="${flight.ticketPrice}">
-
-                             <select id="currencySelect" name="currency" onchange="updateCurrency()">
-                                 <option value="USD" disabled selected>USD</option>
+                                                         <select class="form-control currency-select" name="currency" aria-label="Convert fare currency" onchange="updateCurrency(this)">
+                                                                 <option value="" disabled selected>Convert to</option>
                                  <option value="EUR">EUR</option>
                                  <option value="GBP">GBP</option>
                                  <option value="JPY">JPY</option>
@@ -97,23 +95,15 @@
               </table>
           </div>
 
+       <c:url var="exchangePriceUrl" value="/flight-service/exchange-price" />
        <script type="text/javascript">
-               function updateCurrency() {
-                   var selectedCurrency = document.getElementById('currencySelect').value;
-                   var price = document.getElementById('priceInput').value;
-                   var url = '/flight-service/exchange-price/' + price + '/' + selectedCurrency;
-                   openPopup(url);
-               }
-
-               function openPopup(url) {
-                   var width = 600;
-                   var height = 400;
-                   var left = (screen.width - width) / 2;
-                   var top = (screen.height - height) / 2;
-                   var options = 'width=' + width + ',height=' + height + ',top=' + top + ',left=' + left + ',resizable=yes,scrollbars=yes,toolbar=no,location=no,directories=no,status=no,menubar=no,copyhistory=no';
-                   window.open(url, 'ExchangePriceWindow', options);
-               }
-           </script>
+           function updateCurrency(currencySelect) {
+               var flightRow = currencySelect.closest('tr');
+               var price = flightRow.querySelector('[data-flight-price]').dataset.flightPrice;
+               var url = '${exchangePriceUrl}/' + encodeURIComponent(price) + '/' + encodeURIComponent(currencySelect.value);
+               window.open(url, 'ExchangePriceWindow', 'width=600,height=400,resizable=yes,scrollbars=yes');
+           }
+       </script>
           <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jrtnyoQ5htLWZ4jNDaxRQ8zHrgrte" crossorigin="anonymous"></script>
 
 <section class="container text-center py-5" style="width: 100;">
