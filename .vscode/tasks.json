@@ -1,0 +1,64 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Flight: Core (Gradle)",
+            "type": "shell",
+            "command": ".\\gradlew.bat",
+            "args": ["bootRun"],
+            "options": {
+                "cwd": "${workspaceFolder}/flight-core-service",
+                "env": {
+                    "DB_PASSWORD": "${input:mysqlPassword}"
+                }
+            },
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Flight: Currency Exchange (Gradle)",
+            "type": "shell",
+            "command": ".\\gradlew.bat",
+            "args": ["bootRun"],
+            "options": {
+                "cwd": "${workspaceFolder}/currency-exchange-service"
+            },
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Flight: Client (Maven)",
+            "type": "shell",
+            "command": ".\\mvnw.cmd",
+            "args": ["spring-boot:run"],
+            "options": {
+                "cwd": "${workspaceFolder}/flight-client-service"
+            },
+            "presentation": {
+                "panel": "dedicated",
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "Flight: Start All Services",
+            "dependsOn": [
+                "Flight: Core (Gradle)",
+                "Flight: Currency Exchange (Gradle)",
+                "Flight: Client (Maven)"
+            ],
+            "dependsOrder": "parallel"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "mysqlPassword",
+            "type": "promptString",
+            "description": "MySQL password for the flight core service",
+            "password": true
+        }
+    ]
+}

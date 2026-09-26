@@ -1,3 +1,10 @@
 {
-    "java.compile.nullAnalysis.mode": "automatic"
+    "java.compile.nullAnalysis.mode": "automatic",
+    "chat.tools.terminal.autoApprove": {
+        "/^\\$env:JAVA_HOME; java -version$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    },
+    "java.jdt.ls.vmargs": "-XX:+UseParallelGC -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xmx4G -Xms100m -Xlog:disable"
 }
