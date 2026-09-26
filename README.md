@@ -107,7 +107,7 @@ CREATE DATABASE cloud_touch;
 
 The core service reads its connection settings from `DB_URL`, `DB_USERNAME`, and `DB_PASSWORD`. The URL defaults to `jdbc:mysql://localhost:3306/cloud_touch` and the username defaults to `root`; the password must be set in the environment and is not stored in the repository. In the core service terminal, set it before starting the service:
 
-Open two PowerShell terminals from the repository root. Start the core service first:
+Open three PowerShell terminals from the repository root. Start the core service first:
 
 ```powershell
 $secure = Read-Host "MySQL password" -AsSecureString
@@ -116,7 +116,16 @@ cd .\flight-core-service
 .\gradlew.bat bootRun
 ```
 
-Then start the web client in the second terminal:
+Start the currency exchange service in another terminal:
+
+```powershell
+cd .\currency-exchange-service
+.\gradlew.bat bootRun
+```
+
+It listens on port `5003` and fetches current rates from Frankfurter; no API key is required. Rates require internet access and are supplied by the external provider.
+
+Then start the web client in the third terminal:
 
 ```powershell
 # Optional: set this to enable the /map directions feature.
@@ -126,13 +135,11 @@ cd .\flight-client-service
 .\mvnw.cmd spring-boot:run
 ```
 
-Open <http://localhost:5005>. The client uses the flight core at `http://localhost:5004/flight-service`. Configure deployments with `FLIGHT_CORE_BASE_URL`, `CURRENCY_EXCHANGE_BASE_URL`, `FLIGHT_CLIENT_SERVER_PORT`, and `FLIGHT_CORE_SERVER_PORT`; configure production database schema behavior with `SPRING_PROFILES_ACTIVE=prod` and `JPA_DDL_AUTO=validate`. Java/Gradle/Maven wrappers may download their build tools and dependencies on the first run.
+Open <http://localhost:5005>. The client uses the flight core at `http://localhost:5004/flight-service` and currency exchange at `http://localhost:5003`. Configure deployments with `FLIGHT_CORE_BASE_URL`, `CURRENCY_EXCHANGE_BASE_URL`, `FLIGHT_CLIENT_SERVER_PORT`, `FLIGHT_CORE_SERVER_PORT`, and `CURRENCY_EXCHANGE_SERVER_PORT`; configure production database schema behavior with `SPRING_PROFILES_ACTIVE=prod` and `JPA_DDL_AUTO=validate`. Java/Gradle/Maven wrappers may download their build tools and dependencies on the first run.
 
 ### Stop Safely
 
-In the client terminal, press `Ctrl+C` and wait for Spring Boot to report that it has stopped. Do the same in the core service terminal. This stops the application processes cleanly; MySQL can remain running. Stop MySQL separately through Windows Services only when you no longer need it.
-
-The currency conversion feature expects a separate service on port `5003`, but `currency-exchange-service` is empty in this repository, so that feature is unavailable unless you supply the service.
+In the client, currency exchange, and core service terminals, press `Ctrl+C` and wait for each Spring Boot process to report that it has stopped. MySQL can remain running. Stop MySQL separately through Windows Services only when you no longer need it.
 
 ### Credential Hygiene
 
