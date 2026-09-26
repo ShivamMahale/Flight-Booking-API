@@ -4,6 +4,7 @@ import com.ntu.flightclientservice.model.BookingInfo;
 import com.ntu.flightclientservice.model.BookingInfoRequest;
 import com.ntu.flightclientservice.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.util.List;
 
 @Service
 public class UserService {
+    @Value("${flight.core.base-url}")
+    private String flightCoreBaseUrl;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
     @Autowired
@@ -21,7 +24,7 @@ public class UserService {
 
     public User registerUser(User userDto) {
         userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        ResponseEntity<User> userResponseEntity = restTemplate.postForEntity("http://localhost:5004/flight-service/api/user/register", userDto, User.class);
+        ResponseEntity<User> userResponseEntity = restTemplate.postForEntity(flightCoreBaseUrl + "/api/user/register", userDto, User.class);
         if (userResponseEntity.getStatusCode().is2xxSuccessful()) {
             return userResponseEntity.getBody();
         }
@@ -29,7 +32,7 @@ public class UserService {
     }
 
     public boolean userExist(String mailId) {
-        ResponseEntity<User> userResponseEntity = restTemplate.getForEntity("http://localhost:5004/flight-service/api/user/" + mailId, User.class);
+        ResponseEntity<User> userResponseEntity = restTemplate.getForEntity(flightCoreBaseUrl + "/api/user/" + mailId, User.class);
         if (userResponseEntity.getStatusCode().is2xxSuccessful()) {
             User user = userResponseEntity.getBody();
             return user.getName() != null;
@@ -38,7 +41,7 @@ public class UserService {
     }
 
     public User getUserByUserName(String mailId) {
-        ResponseEntity<User> userResponseEntity = restTemplate.getForEntity("http://localhost:5004/flight-service/api/user/" + mailId, User.class);
+        ResponseEntity<User> userResponseEntity = restTemplate.getForEntity(flightCoreBaseUrl + "/api/user/" + mailId, User.class);
         if (userResponseEntity.getStatusCode().is2xxSuccessful()) {
             return userResponseEntity.getBody();
         }
@@ -46,7 +49,7 @@ public class UserService {
     }
 
     public List<Long> bookSeats(BookingInfoRequest bookingInfo) {
-        ResponseEntity<Object> response = restTemplate.postForEntity("http://localhost:5004/flight-service/api/user//flight/booking", bookingInfo, Object.class);
+        ResponseEntity<Object> response = restTemplate.postForEntity(flightCoreBaseUrl + "/api/user//flight/booking", bookingInfo, Object.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             List<Long> bookingIds = (List<Long>) response.getBody();
             return bookingIds;
@@ -55,7 +58,7 @@ public class UserService {
     }
 
     public List<BookingInfo> getBookingInfo(String email) {
-        ResponseEntity<Object> response = restTemplate.getForEntity("http://localhost:5004/flight-service/api/user/profile/" + email, Object.class);
+        ResponseEntity<Object> response = restTemplate.getForEntity(flightCoreBaseUrl + "/api/user/profile/" + email, Object.class);
         if (response.getStatusCode().is2xxSuccessful()) {
             List<BookingInfo> bookingInfoList = (List<BookingInfo>) response.getBody();
             return bookingInfoList;

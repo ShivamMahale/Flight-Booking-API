@@ -16,16 +16,20 @@ import java.io.IOException;
 @Service
 public class GoogleMapsService {
     private final String apiKey;
-    private GeoApiContext context;
+    private final GeoApiContext context;
 
     @Autowired
     public GoogleMapsService(Environment env) {
         this.apiKey = env.getProperty("google.maps.api-key");
-        System.out.println(apiKey);
-        this.context = new GeoApiContext.Builder().apiKey(apiKey).build();
+        this.context = apiKey == null || apiKey.isBlank()
+                ? null
+                : new GeoApiContext.Builder().apiKey(apiKey).build();
     }
 
     public String getDirections(String origin, String destination) {
+        if (context == null) {
+            throw new IllegalStateException("Set GOOGLE_MAPS_API_KEY to enable map directions.");
+        }
 
         try {
             DirectionsApiRequest request = DirectionsApi.newRequest(context);

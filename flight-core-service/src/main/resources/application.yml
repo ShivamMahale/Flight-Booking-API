@@ -1,3 +1,20 @@
 spring:
   profiles:
-    active: local
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/cloud_touch}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: ${JPA_DDL_AUTO:validate}
+      order_inserts: true
+    show-sql: ${JPA_SHOW_SQL:false}
+server:
+  port: ${FLIGHT_CORE_SERVER_PORT:5004}
+  servlet:
+    context-path: /flight-service
